@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>YamySinchon</title>
+       
+        <link rel="stylesheet" type="text/css" href="css/style-main.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">YamySinchon</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#table">Menu <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </li>
+                   
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+                </div>
+        </nav>
+      <div class="align-middle">
+        <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 20rem;">
+          <img src="./images/Food.png" class="card-img-top" alt="...">
+          <div class="card-body" id="menu">
+            <h6 class="card-title">What to Eat today!!</h5>
+            <h5> 총 <span id = "lenMenu" class="badge badge-secondary">21</span> 개의 메뉴가 준비되어 있습니다.</h5>
+            <p class="card-text">맛있는 식사 되세요. 건강한 식습관은 건강한 생활을 만들고 건강한 생활은 건강한 사람을 만듭니다.</p>
+            <div class="text-center">
+              <a href="#menu" id="mybutton1" class="btn btn-primary">추천 받기</a>
+              <a href="#menu" id="mybutton2" class="btn btn-secondary">메뉴 추가</a>
+            </div>
+          </br>
+            <div class="card-footer text-muted">
+              <p id="mytext1" class="card-text">-</p>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+        <table class="table" id="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Menu</th>
+              </tr>
+            </thead>
+            <tbody id="mytable">
+            </tbody>
+          </table>
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
+    <footer class="footer mt-auto py-3">
+        <div class="container">
+          <span class="text-muted">CopyRight. Yonsei Univ. H.R.Choi></span>
+          <span class="text-muted">Dept of Mechanical Engineering></span>
+        </div>
+    </footer>
+</html>

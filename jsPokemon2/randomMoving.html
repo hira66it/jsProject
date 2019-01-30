@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset ="UTF-8">
+        <title>무작위 행보</title>
+        <script>
+            function* randomWalk(c, x0, y0, d,color){
+                var dx            = [1,0,-1,0], dy = [0,1,0,-1];
+                var x             = x0;
+                var y             = y0;
+                    c.strokeStyle  = color;
+                    c.globalAlpha = 0.15;
+                while(true){
+                    yield;
+                    c.beginPath();
+                    c.moveTo(x,y);
+                    var dir  = Math.floor(Math.random()*4);
+                        x   += d*dx[dir];
+                        y   += d*dy[dir];
+                    if (x<0) x =0;
+                    if (x>600) x =600;
+                    if (y<0) y =0;
+                    if (y>600) y =600;
+
+                    c.lineTo(x,y);
+                    c.stroke();
+                }
+            }
+            window.onload = function(){
+                var timer2;
+                var canvas = document.getElementById("mycanvas");
+                var ctx    = canvas.getContext("2d");
+                var iter = randomWalk(ctx, 300,300,4,"red");
+                var iter2 = randomWalk(ctx, 300,300,4,"red");
+                var iter3 = randomWalk(ctx, 300,300,4,"red");
+                var iter4 = randomWalk(ctx, 300,300,4,"red");
+
+                function timer(){
+                    timer2 = setInterval(function(){iter.next();iter2.next();iter3.next();iter4.next();},);
+                }
+                var a=0;
+                timer();
+                canvas.onclick = function(event){
+                    if (a==0) {clearInterval(timer2);a=1;}
+                    else {a=0;timer();}
+                };
+            };
+        </script>
+        <style>
+            #mycanvas {border: 1px solid gray;}
+        </style>
+    </head>
+    <body>
+        <canvas id="mycanvas" width=600 height =600> </canvas>
+    </body>
+</html>

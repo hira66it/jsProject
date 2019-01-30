@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome to Pikachu World</title>
+        <style>
+            canvas {border: 2px solid black;}
+        </style>
+        <script>
+        window.onload = function(){
+            var startButton = document.getElementById("start");
+            var stopButton = document.getElementById("stop");
+            var resetButton = document.getElementById("reset");
+            var display = document.getElementById("display");
+            var startTime,endTime,timer,a=0,addon =0.0;
+
+            //drawing a picture
+            var canvas = document.getElementById("mycanvas");
+            var ctx = canvas.getContext("2d");
+            var img = new Image();
+            img.onload = function(){
+                ctx.drawImage(img,10,10);
+                var imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
+                imageData.getRGBA = function(m,n,i){
+                    return this.data[this.width*4*n + 4*m+i];
+                };
+                var rgb = document.getElementById("rgb");
+                canvas.onclick = function(event){
+                    var x = event.offsetX;
+                    var y = event.offsetY;
+                    rgb.innerText = "R:"+imageData.getRGBA(x,y,0)
+                                   +"G:"+imageData.getRGBA(x,y,1)
+                                   +"B:"+imageData.getRGBA(x,y,2);
+
+                };
+            };
+            img.src = "./cat.jpg";
+            //end of drawing picture
+
+            resetButton.onclick = reset;
+            startButton.onclick = timer2;
+        
+        
+            function displayTime(){
+                var d = new Date();
+                console.log(display);
+                display.innerHTML=d;
+            }
+
+            function timer2(){
+                startButton.onclick = null;
+                resetButton.onclick = null;
+                stopButton.onclick = stop;
+                a =0;
+                startTime = new Date();
+                timer = setInterval(function(){
+                    var now = new Date();
+                    
+                    display.innerText= (addon+(now-startTime)/1000).toFixed(3);
+
+                    a += 1;
+                    if (a==1000){
+                        //stop();
+                    };
+                    //console.log(a);
+                },10);
+            }
+            function stop(){
+                endTime = new Date();
+                addon = addon+(endTime - startTime)/1000;
+                clearInterval(timer);
+                startButton.onclick = timer2;
+                stopButton.onclick = null;
+                resetButton.onclick = reset;
+            }
+            function reset(){
+                display.innerText = "0.00";
+                addon =0;
+            }
+        };
+        </script>
+    </head>
+    <body>
+        <canvas id="mycanvas" width = "300" height = "200"></canvas>
+        <p id="display">0.00</p>
+        <input type="string" value="입력해주세요" id ="text_input">
+        <input type="button" value="start" id="start">
+        <input type="button" value="stop" id="stop">
+        <input type="button" value="reset" id="reset">
+        <div><output id="rgb"></output></div>
+    </body>
+</html>
