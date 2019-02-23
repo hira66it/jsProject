@@ -77,6 +77,67 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        
+        <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var auth, database,userInfo;
+          var config = {
+            apiKey: "AIzaSyBnnCcf3XU8gMFLS3V07pPNUwGRozkMGaY",
+            authDomain: "mune-corp.firebaseapp.com",
+            databaseURL: "https://mune-corp.firebaseio.com",
+            projectId: "mune-corp",
+            storageBucket: "mune-corp.appspot.com",
+            messagingSenderId: "543332343261"
+          };
+          var database = firebase.database();
+          // 인증하는 부분
+          firebase.initializeApp(config);
+          
+          auth = firebase.auth();
+          var authProvider = new firebase.auth.GoogleAuthProvider();
+          auth.onAuthStateChanged(function(user){
+            if(user){
+              // 인증 성공
+                console.log("success");
+            }else{
+              // 인증 실패
+                console.log("Failed");
+                auth.signInWithPopup(authProvider);
+
+              }
+            }
+          );
+
+        function get_text(){
+          var memoRef = databse.ref('data_acq');
+          // var memoRef = databse.ref('data_acq/'+userInfo.uid);
+          memoRef.on('child_added' , on_child_added )
+          /*
+           {memos : {
+             uid : {text : 'tttt', injur : true}
+             uid : {text : 'asdf', injur : false}
+           }
+          }
+          */
+        }
+        function on_child_added(data){
+          var key = data.key;
+          var text = data.val();
+            console.log(data.val());
+        }
+
+
+        function save_data(){
+          var memoRef = databse.ref('data_acq');
+          var txt = $(".textarea").val();
+          memoRef.push({
+            text : txt,
+            careateDate : new Date().getTime()
+          })
+        }
+
+        </script>
 
         <script type="text/javascript" src="js/main.js"></script>
     </body>
